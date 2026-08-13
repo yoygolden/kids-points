@@ -1,0 +1,12 @@
+{
+  "name": "kids-points-bank",
+  "version": "1.0.0",
+  "private": true,
+  "description": "小孩子积分兑换系统 - 云同步版（零依赖 Node 后端）",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
