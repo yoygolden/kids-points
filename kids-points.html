@@ -104,11 +104,101 @@
   .card.task .emoji{background:linear-gradient(135deg,#D8FBF4,#EAFCF8);}
   .card.reward .emoji{background:linear-gradient(135deg,#EDE4FF,#F6F1FF);}
   .card .body{flex:1;min-width:0;}
+  .card .acts{display:flex;flex-direction:column;gap:6px;flex:none;}
+  .card .acts .btn{font-size:13px;padding:7px 13px;}
+  .btn.del{background:var(--bg);color:#c0392b;box-shadow:none;border:1px solid #f0c9c2;}
+  .btn.del:active{filter:brightness(.96);}
+  .set-table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--card);
+    border-radius:var(--r-md);overflow:hidden;box-shadow:var(--sh-s);}
+  .set-table th{text-align:left;font-size:11.5px;color:var(--ink-soft);font-weight:800;
+    padding:9px 10px;background:var(--bg2);border-bottom:1px solid var(--line);}
+  .set-table td{padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:middle;}
+  .set-table tr:last-child td{border-bottom:0;}
+  .set-table .nm{font-weight:800;}
+  .set-table .nm .em{margin-right:6px;}
+  .set-table .set{color:var(--ink-soft);font-size:12.5px;line-height:1.5;}
+  .set-table .op{text-align:right;white-space:nowrap;}
+  .set-table .op .btn{font-size:12px;padding:5px 11px;margin-left:6px;}
+  .set-table .op .btn:first-child{margin-left:0;}
+  .set-empty{text-align:center;color:var(--ink-soft);font-size:13px;padding:22px 0;}
+
+  /* 合理性计算器表格 */
+  .calc-table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--card);
+    border-radius:var(--r-md);overflow:hidden;box-shadow:var(--sh-s);}
+  .calc-table td{padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:middle;line-height:1.5;}
+  .calc-table tr:last-child td{border-bottom:0;}
+  .calc-table .cl{color:var(--ink-soft);font-weight:600;width:48%;}
+  .calc-table .cv{font-weight:700;color:var(--ink);text-align:right;}
+  .calc-table input{width:78px;text-align:center;}
+
+  /* 危险/确定按钮 */
+  .btn.danger{background:#e74c3c;color:#fff;border:0;}
+  .btn.danger:active{transform:scale(.94);filter:brightness(.96);}
+
+  /* 开关行 */
+  .switch-row{display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:14px;padding:4px 0;}
+  .switch-row input{width:46px;height:26px;-webkit-appearance:none;appearance:none;background:var(--line);border-radius:99px;position:relative;cursor:pointer;transition:background .2s;flex:none;}
+  .switch-row input:checked{background:var(--mint);}
+  .switch-row input::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+  .switch-row input:checked::after{transform:translateX(20px);}
+
+  /* 首页盲盒 */
+  .mystery{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#FFF1F8,#F3ECFF);
+    border-radius:var(--r-md);padding:14px;margin-bottom:14px;box-shadow:var(--sh-s);}
+  .mystery .m-emoji{font-size:34px;width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
+    background:linear-gradient(135deg,#FFD6EC,#E7D6FF);flex:none;animation:bob 2.4s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  .mystery .m-info{flex:1;min-width:0;}
+  .mystery .m-name{font-size:16px;font-weight:900;}
+  .mystery .m-sub{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+
+  /* 盲盒揭晓弹层 */
+  .gift{font-size:80px;text-align:center;margin:8px 0;filter:drop-shadow(0 6px 12px rgba(0,0,0,.15));}
+  .gift.shake{animation:shake .5s ease-in-out;}
+  @keyframes shake{0%,100%{transform:rotate(0)}20%{transform:rotate(-12deg) scale(1.08)}40%{transform:rotate(12deg) scale(1.08)}60%{transform:rotate(-8deg)}80%{transform:rotate(8deg)}}
+  .m-tip{text-align:center;color:var(--ink-soft);font-size:14px;margin-bottom:6px;}
+  .prize-emoji{font-size:72px;text-align:center;margin:6px 0;animation:pop .4s ease;}
+  @keyframes pop{0%{transform:scale(.2);opacity:0}70%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
+  .prize-name{text-align:center;font-size:20px;font-weight:900;}
+  .prize-pts{text-align:center;font-size:16px;font-weight:800;color:var(--mint);margin-top:4px;}
   .card .ttl{font-size:16px;font-weight:800;}
   .card .meta{font-size:12.5px;color:var(--ink-soft);margin-top:3px;}
   .pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:11px;font-weight:700;margin-right:6px;}
   .pill.mint{background:#D8FBF4;color:#0c7a6b;}
   .pill.violet{background:#EDE4FF;color:#6d45c9;}
+
+  /* 幸运抽奖 */
+  .lottery{background:linear-gradient(135deg,#FFF3E0,#FDE7F3);border-radius:var(--r-md);padding:14px;margin-bottom:14px;box-shadow:var(--sh-s);}
+  .lottery .lot-head{display:flex;align-items:center;gap:12px;}
+  .lottery .lot-emoji{font-size:32px;width:52px;height:52px;border-radius:16px;display:grid;place-items:center;
+    background:linear-gradient(135deg,#FFE0B2,#FFD1E8);flex:none;animation:bob 2.4s ease-in-out infinite;}
+  .lottery .lot-name{font-size:16px;font-weight:900;}
+  .lottery .lot-sub{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+  .bet-pills{display:flex;gap:8px;margin:12px 0 8px;}
+  .bet-pill{flex:1;border:2px solid #EBD9F2;background:#fff;border-radius:14px;padding:8px 0;text-align:center;
+    font-weight:800;font-size:15px;cursor:pointer;color:#7a4fb5;transition:.15s;}
+  .bet-pill.on{background:linear-gradient(135deg,#7C4DFF,#FF5CA8);color:#fff;border-color:transparent;box-shadow:0 6px 14px rgba(124,77,255,.3);}
+  .lot-odds{font-size:12.5px;color:var(--ink-soft);text-align:center;margin-bottom:10px;}
+  .lot-odds b{color:#B4233A;}
+  .lot-actions{display:flex;gap:10px;}
+  .lot-actions .btn{flex:1;}
+  .coupon-badge{margin-top:10px;display:flex;align-items:center;justify-content:space-between;
+    background:#FFF7E6;border:1px solid #F4D28A;border-radius:12px;padding:8px 12px;font-size:13px;cursor:pointer;}
+  .coupon-badge b{color:#C77700;}
+  /* 抽奖结果 */
+  .draw-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:10px 0;}
+  .dc-card{background:#fff;border-radius:12px;padding:8px 4px;text-align:center;border:2px solid #eee;animation:pop .35s ease;}
+  .dc-card .dc-emoji{font-size:26px;}
+  .dc-card .dc-name{font-size:10.5px;font-weight:700;margin-top:2px;line-height:1.2;}
+  .dc-card .dc-sub{font-size:10px;color:var(--ink-soft);}
+  .dc-card.jack{border-color:#FFC107;background:linear-gradient(135deg,#FFF8E1,#FFE0F0);box-shadow:0 0 0 2px #FFC107 inset;}
+  .dc-card.jack .dc-name{color:#B8860B;}
+  /* 现金券列表 */
+  .cp-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #f0f0f0;}
+  .cp-row .cp-amt{font-size:18px;font-weight:900;color:#C77700;min-width:64px;}
+  .cp-row .cp-meta{flex:1;font-size:12px;color:var(--ink-soft);}
+  .cp-row.used{opacity:.45;}
+  .cp-total{display:flex;justify-content:space-between;font-weight:800;padding:10px 0;font-size:14px;}
   .pill.gold{background:#FFF3D6;color:#b07d05;}
 
   .btn{
@@ -161,6 +251,9 @@
     background:#FBFAFE;cursor:pointer;}
   .swatch button.on{border-color:var(--ink);}
   .danger{color:var(--rose);background:none;border:0;font-weight:800;font-size:14px;cursor:pointer;padding:6px 0;}
+  .edit-err{display:none;color:#B4233A;font-size:13px;font-weight:700;line-height:1.5;background:#FDE8EC;
+    border:1px solid #F6C6CE;border-radius:12px;padding:10px 12px;margin:0 0 12px;}
+  .edit-err.on{display:block;}
   .sheet .actions{display:flex;gap:10px;margin-top:16px;}
   .sheet .actions .btn{flex:1;}
 
@@ -253,6 +346,23 @@
         <a class="spend" href="#" data-go="redeem">🎁 去兑换</a>
       </div>
 
+      <div class="lottery" id="lotteryBox" style="display:none;">
+        <div class="lot-head">
+          <div class="lot-emoji">🎰</div>
+          <div class="lot-info">
+            <div class="lot-name">幸运抽奖</div>
+            <div class="lot-sub" id="lotSub"></div>
+          </div>
+        </div>
+        <div class="bet-pills" id="betPills"></div>
+        <div class="lot-odds" id="lotOdds"></div>
+        <div class="lot-actions">
+          <button class="btn violet" id="lotSingleBtn">单抽</button>
+          <button class="btn mint" id="lotTenBtn">十连抽</button>
+        </div>
+        <div class="coupon-badge" id="couponBadge" style="display:none;"></div>
+      </div>
+
       <div class="section-t">📜 最近动态</div>
       <div class="mini-log" id="homeLog"></div>
     </section>
@@ -288,6 +398,24 @@
           <input id="setName" maxlength="8" placeholder="例如：小明">
         </div>
       </div>
+
+      <div class="section-t" style="font-size:14px;">🧮 积分设置合理性计算器</div>
+      <div class="card" style="display:block;">
+        <table class="calc-table">
+          <tbody>
+            <tr>
+              <td class="cl">假设每日完成度</td>
+              <td class="cv"><input id="calcRate" type="number" min="0" max="100" value="70"> %</td>
+            </tr>
+            <tr>
+              <td class="cl">每日观看时间上限（分钟 · 家长红线，也是观看类奖励的硬上限）</td>
+              <td class="cv"><input id="calcCap" type="number" min="0" value="120"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="tag-hint">电视/iPad 的「每次时长」直接取自下方奖励设置，改奖励里的时长这里会自动更新。</div>
+        <div id="calcResult"></div>
+      </div>
       <div class="tag-hint">💡 下面的内容只有家长能改。已用密码保护，防止小朋友偷偷加奖励。</div>
       <div style="display:flex;gap:10px;margin-bottom:12px;">
         <button class="btn ghost" style="flex:1" id="addTaskBtn">＋ 添加赚分任务</button>
@@ -298,21 +426,38 @@
       <div class="section-t" style="font-size:14px;">可兑换奖励</div>
       <div id="setRewards"></div>
 
-      <div class="section-t" style="font-size:14px;">🧮 积分设置合理性计算器</div>
+      <div class="section-t" style="font-size:14px;">🎰 幸运抽奖</div>
       <div class="card" style="display:block;">
-        <div class="field" style="margin:0 0 12px;">
-          <label>假设每日完成度（孩子实际打卡比例）</label>
-          <div class="row2">
-            <input id="calcRate" type="number" min="0" max="100" value="70">
-            <div style="display:flex;align-items:center;font-weight:800;color:var(--ink-soft);padding:0 12px;">%</div>
+        <label class="switch-row"><span>开启抽奖功能</span><input type="checkbox" id="mysteryOn"></label>
+
+        <div class="field" style="margin-top:12px;"><label>下注档位（积分 · 三档）</label>
+          <div style="display:flex;gap:8px;">
+            <input id="bet0" type="number" min="0" style="flex:1;">
+            <input id="bet1" type="number" min="0" style="flex:1;">
+            <input id="bet2" type="number" min="0" style="flex:1;">
           </div>
         </div>
-        <div class="field" style="margin:0 0 12px;">
-          <label>每日屏幕时间上限（家长红线 · 分钟）</label>
-          <input id="calcCap" type="number" min="0" value="60">
+
+        <div class="field" style="margin-top:8px;"><label>极品概率（% · 对应上面三档）</label>
+          <div style="display:flex;gap:8px;">
+            <input id="jp0" type="number" min="0" step="0.01" style="flex:1;">
+            <input id="jp1" type="number" min="0" step="0.01" style="flex:1;">
+            <input id="jp2" type="number" min="0" step="0.01" style="flex:1;">
+          </div>
         </div>
-        <div class="tag-hint">电视/iPad 的「每次时长」直接取自上方奖励设置，改奖励里的时长这里会自动更新。</div>
-        <div id="calcResult"></div>
+
+        <label class="switch-row" style="margin-top:12px;"><span>允许十连抽</span><input type="checkbox" id="tenDrawOn"></label>
+
+        <div class="row2" style="margin-top:12px;">
+          <div class="field" style="margin:0;"><label>现金券下限（元）</label><input id="cashMin" type="number" min="0"></div>
+          <div class="field" style="margin:0;"><label>现金券上限（元）</label><input id="cashMax" type="number" min="0"></div>
+        </div>
+
+        <div class="field" style="margin-top:8px;"><label>极品奖励金额（元）</label><input id="jackpotAmt" type="number" min="0"></div>
+
+        <div class="section-t" style="font-size:13px;margin:14px 0 6px;">🎲 普通奖池（极品以外）</div>
+        <div id="mysteryPrizes"></div>
+        <button class="btn ghost" style="width:100%;margin-top:8px;" id="addPrizeBtn">＋ 添加奖品</button>
       </div>
 
       <div class="card" style="display:block;margin-top:6px;">
@@ -374,6 +519,13 @@
     <div class="field"><label>图标（emoji）</label>
       <div class="swatch" id="f_emoji"></div>
     </div>
+    <div class="field" id="f_catField" style="display:none;">
+      <label>奖励类型</label>
+      <div class="seg" id="f_cat">
+        <label><input type="radio" name="cat" value="screen" checked><span>📺 屏幕观看类</span></label>
+        <label><input type="radio" name="cat" value="goods"><span>🛍️ 实物金额类</span></label>
+      </div>
+    </div>
     <div class="row2">
       <div class="field"><label id="f_valLabel">每次积分</label><input id="f_val" inputmode="numeric" type="number" min="0"></div>
       <div class="field"><label id="f_limLabel">每日上限</label><input id="f_lim" inputmode="numeric" type="number" min="0"></div>
@@ -381,6 +533,10 @@
     <div class="field" id="f_durField" style="display:none;margin:0 0 12px;">
       <label>每次时长（分钟，0 = 不限时）</label><input id="f_dur" type="number" min="0" value="30">
     </div>
+    <div class="field" id="f_moneyField" style="display:none;margin:0 0 12px;">
+      <label>金额（元 · 仅买东西/购物类填，0 = 不设定金额）</label><input id="f_money" type="number" min="0" value="0">
+    </div>
+    <div class="edit-err" id="editErr"></div>
     <div class="tag-hint" id="f_hint"></div>
     <div class="actions">
       <button class="btn ghost" id="editCancel">取消</button>
@@ -421,6 +577,64 @@
   </div>
 </div>
 
+<!-- 通用确认弹层（替代原生 confirm，WebView 安全） -->
+<div class="sheet" id="confirmDialog">
+  <div class="panel" style="text-align:center;">
+    <div id="cdEmoji" style="font-size:46px;">⚠️</div>
+    <h3 class="ph" id="cdTitle" style="justify-content:center;">确认</h3>
+    <p id="cdDesc" style="font-size:14px;color:var(--ink-soft);margin:0 0 6px;"></p>
+    <div class="actions">
+      <button class="btn ghost" id="cdCancel">取消</button>
+      <button class="btn danger" id="cdOk">确定</button>
+    </div>
+  </div>
+</div>
+
+<!-- 抽奖结果弹层 -->
+<div class="sheet" id="mysterySheet">
+  <div class="panel" style="text-align:center;">
+    <h3 class="ph" style="justify-content:center;">🎰 抽奖结果</h3>
+    <div id="mysteryStage"></div>
+    <div class="actions">
+      <button class="btn violet" id="lotAgainBtn">再来一次</button>
+      <button class="btn ghost" id="mysteryCloseBtn">收下</button>
+    </div>
+  </div>
+</div>
+
+<!-- 现金奖励券弹层 -->
+<div class="sheet" id="couponSheet">
+  <div class="panel">
+    <h3 class="ph">💵 现金奖励券</h3>
+    <div id="couponStage"></div>
+    <div class="actions">
+      <button class="btn ghost" id="couponClose">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 奖品编辑弹层 -->
+<div class="sheet" id="prizeSheet">
+  <div class="panel">
+    <h3 class="ph" id="prizeTitle">编辑奖品</h3>
+    <div class="field" style="margin:0 0 12px;"><label>图标</label><div class="emoji-pick" id="pz_emoji"></div></div>
+    <div class="field" style="margin:0 0 12px;"><label>奖品名称</label><input id="pz_name" maxlength="10" placeholder="如：现金奖励券"></div>
+    <div class="field" style="margin:0 0 12px;"><label>类型</label>
+      <select id="pz_kind">
+        <option value="cash">现金奖励券（用设置的金额范围）</option>
+        <option value="points">积分奖励</option>
+        <option value="none">谢谢参与（无奖励）</option>
+      </select>
+    </div>
+    <div class="field" id="pz_ptsField" style="margin:0 0 12px;display:none;"><label>奖励积分</label><input id="pz_points" type="number" min="0" value="8"></div>
+    <div class="field" style="margin:0 0 12px;"><label>权重（越大越容易抽中）</label><input id="pz_weight" type="number" min="1" value="35"></div>
+    <div class="actions">
+      <button class="btn ghost" id="prizeCancel">取消</button>
+      <button class="btn" id="prizeSave">保存</button>
+    </div>
+  </div>
+</div>
+
 <!-- 奖励计时弹层 -->
 <div class="sheet tm-sheet" id="timerSheet">
   <div class="panel">
@@ -446,20 +660,36 @@ const DEFAULT={
   balance:0,
   pin:"1234",
   lastDate:"",
+  settings:{dailyWatch:120},
   tasks:[
     {id:"t1",name:"学习打卡",emoji:"📚",points:10,limit:3},
     {id:"t2",name:"家庭劳动",emoji:"🧹",points:8,limit:3},
     {id:"t3",name:"健身打卡",emoji:"🏃",points:12,limit:2}
   ],
   rewards:[
-    {id:"r1",name:"看电视",emoji:"📺",cost:20,cooldown:1,duration:30},
-    {id:"r2",name:"看iPad",emoji:"📱",cost:30,cooldown:1,duration:30},
-    {id:"r3",name:"玩小游戏",emoji:"🎮",cost:40,cooldown:1,duration:30},
-    {id:"r4",name:"听故事",emoji:"🎧",cost:15,cooldown:1,duration:20},
-    {id:"r5",name:"买小玩具/零食",emoji:"🧸",cost:100,cooldown:0,duration:0}
+    {id:"r1",name:"看电视",emoji:"📺",cost:20,cooldown:1,duration:30,money:0,cat:"screen"},
+    {id:"r2",name:"看iPad",emoji:"📱",cost:30,cooldown:1,duration:30,money:0,cat:"screen"},
+    {id:"r3",name:"玩小游戏",emoji:"🎮",cost:40,cooldown:1,duration:30,money:0,cat:"screen"},
+    {id:"r4",name:"听故事",emoji:"🎧",cost:15,cooldown:1,duration:20,money:0,cat:"screen"},
+    {id:"r5",name:"买小玩具/零食",emoji:"🧸",cost:100,cooldown:0,duration:0,money:10,cat:"goods"}
   ],
   log:[],
-  sync:{enabled:false,code:"",rev:0,updatedAt:0}
+  sync:{enabled:false,code:"",rev:0,updatedAt:0},
+  mystery:{
+    enabled:true,
+    bets:[5,10,20],            // 下注档位（积分）
+    jackpotPct:[0.05,0.10,0.15], // 对应三档的极品概率（%）
+    tenDraw:true,              // 允许十连抽
+    cashMin:5, cashMax:10,     // 现金奖励券金额范围（元）
+    jackpotAmt:50,             // 极品奖励金额（元）
+    pool:[                      // 普通奖池（极品以外）
+      {id:"p_cash",emoji:"💵",name:"现金奖励券",kind:"cash",weight:35},
+      {id:"p_pts", emoji:"⭐",name:"积分小礼包",kind:"points",points:8,weight:35},
+      {id:"p_none",emoji:"🍃",name:"谢谢参与",kind:"none",weight:30}
+    ],
+    coupons:[],                // 已抽现金券 {id,amount,time,used}
+    last:"", cooldown:0
+  }
 };
 
 let S=load();
@@ -475,14 +705,48 @@ function load(){
           const m=String(rw.name).match(/(\d+)\s*分钟/);
           rw.duration=m?parseInt(m[1],10):0;
         }
+        if(rw.money===undefined)rw.money=0;
+        // 迁移：旧奖励补类型（有时长=屏幕观看类，否则=实物金额类）
+        if(!rw.cat) rw.cat = rw.duration>0 ? "screen" : "goods";
       });
       // 迁移：默认补「听故事」奖励（仅当没有时）
       if(!d.rewards.find(rw=>rw.id==="r_story"))
-        d.rewards.push({id:"r_story",name:"听故事",emoji:"🎧",cost:15,cooldown:1,duration:20});
+        d.rewards.push({id:"r_story",name:"听故事",emoji:"🎧",cost:15,cooldown:1,duration:20,cat:"screen"});
     }
+    // 迁移：settings 字段（每日观看时间上限）
+    if(!d.settings||typeof d.settings!=="object") d.settings={dailyWatch:120};
+    else if(typeof d.settings.dailyWatch!=="number"||isNaN(d.settings.dailyWatch)) d.settings.dailyWatch=120;
     // 迁移：sync 字段
     if(!d.sync||typeof d.sync!=="object")d.sync={enabled:false,code:"",rev:0,updatedAt:0};
     else{d.sync.enabled=!!d.sync.enabled;d.sync.code=d.sync.code||"";d.sync.rev=d.sync.rev||0;d.sync.updatedAt=d.sync.updatedAt||0;}
+    // 迁移：mystery 字段（抽奖模式）
+    if(!d.mystery||typeof d.mystery!=="object"){
+      d.mystery=JSON.parse(JSON.stringify(DEFAULT.mystery));
+    }else{
+      const M=DEFAULT.mystery;
+      d.mystery.enabled=!!d.mystery.enabled;
+      if(!Array.isArray(d.mystery.bets)||d.mystery.bets.length<1) d.mystery.bets=M.bets.slice();
+      d.mystery.bets=d.mystery.bets.map(x=>Math.max(1,parseInt(x,10)||0)).filter(Boolean);
+      if(!Array.isArray(d.mystery.jackpotPct)||d.mystery.jackpotPct.length!==d.mystery.bets.length)
+        d.mystery.jackpotPct=M.jackpotPct.slice(0,d.mystery.bets.length);
+      d.mystery.jackpotPct=d.mystery.jackpotPct.map(x=>(parseFloat(x)||0));
+      d.mystery.tenDraw=!!(d.mystery.tenDraw!==false);
+      d.mystery.cashMin=Math.max(0,parseInt(d.mystery.cashMin||M.cashMin,10));
+      d.mystery.cashMax=Math.max(d.mystery.cashMin,parseInt(d.mystery.cashMax||M.cashMax,10));
+      d.mystery.jackpotAmt=Math.max(0,parseInt(d.mystery.jackpotAmt||M.jackpotAmt,10));
+      if(!Array.isArray(d.mystery.pool)||!d.mystery.pool.length)
+        d.mystery.pool=JSON.parse(JSON.stringify(M.pool));
+      d.mystery.pool.forEach((p,i)=>{
+        if(!p.id)p.id="p"+(i+1)+"_"+Date.now();
+        if(!p.kind||!["cash","points","none"].includes(p.kind)) p.kind="none";
+        p.weight=Math.max(1,parseInt(p.weight||1,10));
+        if(p.kind==="points") p.points=Math.max(0,parseInt(p.points||0,10));
+      });
+      if(!Array.isArray(d.mystery.coupons)) d.mystery.coupons=[];
+      d.mystery.coupons.forEach(c=>{ if(typeof c.used!=="boolean") c.used=false; });
+      d.mystery.last=d.mystery.last||"";
+      d.mystery.cooldown=Math.max(0,d.mystery.cooldown||0);
+    }
     return d;
   }}catch(e){}
   return JSON.parse(JSON.stringify(DEFAULT));
@@ -520,17 +784,53 @@ function renderHome(){
   document.getElementById("homeSub").textContent=
     S.balance>=40?"积分不少啦，去兑换想要的东西吧！":
     "再攒攒，离奖励更近一步！";
+  // 幸运抽奖
+  const lbox=document.getElementById("lotteryBox");
+  const betPills=document.getElementById("betPills");
+  const lotSub=document.getElementById("lotSub");
+  const lotOdds=document.getElementById("lotOdds");
+  const singleBtn=document.getElementById("lotSingleBtn");
+  const tenBtn=document.getElementById("lotTenBtn");
+  const couponBadge=document.getElementById("couponBadge");
+  if(S.mystery.enabled && S.mystery.pool.length && S.mystery.bets.length){
+    lbox.style.display="block";
+    if(!S.mystery.bets.includes(lotBet)) lotBet=S.mystery.bets[0];
+    betPills.innerHTML=S.mystery.bets.map(b=>
+      `<div class="bet-pill ${b===lotBet?"on":""}" data-bet="${b}">${b}分</div>`).join("");
+    betPills.querySelectorAll("[data-bet]").forEach(p=>p.onclick=()=>{lotBet=parseInt(p.dataset.bet,10);renderHome();});
+    const jpIdx=S.mystery.bets.indexOf(lotBet);
+    const jp=(S.mystery.jackpotPct[jpIdx]!=null?S.mystery.jackpotPct[jpIdx]:0);
+    lotSub.textContent=`余额 ${S.balance} 分 · 选中下注 ${lotBet} 分`;
+    lotOdds.innerHTML=`极品概率 <b>${jp}%</b> · 现金券 ${S.mystery.cashMin}-${S.mystery.cashMax}元`;
+    const canSingle=S.balance>=lotBet;
+    singleBtn.disabled=!canSingle;
+    singleBtn.textContent=canSingle?"单抽":"积分不足";
+    if(S.mystery.tenDraw){
+      tenBtn.style.display="";
+      const canTen=S.balance>=lotBet*10;
+      tenBtn.disabled=!canTen;
+      tenBtn.textContent=canTen?"十连抽":"积分不足";
+    } else { tenBtn.style.display="none"; }
+    const pend=S.mystery.coupons.filter(c=>!c.used);
+    const total=pend.reduce((a,c)=>a+c.amount,0);
+    if(pend.length){
+      couponBadge.style.display="flex";
+      couponBadge.innerHTML=`<span>💵 待发放现金券 <b>${pend.length}</b> 张 · 共 <b>¥${total}</b></span><span>家长核销 ›</span>`;
+      couponBadge.onclick=openCoupons;
+    } else { couponBadge.style.display="none"; couponBadge.onclick=null; }
+  } else { lbox.style.display="none"; }
   const box=document.getElementById("homeLog");
   const recent=S.log.slice(-5).reverse();
   if(!recent.length){box.innerHTML='<div class="empty">还没有记录，去赚第一笔积分吧 🌱</div>';return;}
-  box.innerHTML=recent.map(l=>`
+  box.innerHTML=recent.map(l=>{
+    const plus=(l.type==="earn"||l.type==="mystery");
+    return `
     <div class="row">
       <div class="ic">${l.emoji}</div>
       <div class="tx">${l.name}<div class="tm">${l.time}</div></div>
-      <div class="amt ${l.type==="earn"?"plus":"minus"}">${l.type==="earn"?"+":"-"}${l.amount}</div>
-    </div>`).join("");
+      <div class="amt ${plus?"plus":"minus"}">${plus?"+":"-"}${l.amount}${l.unit||""}</div>
+    </div>`;}).join("");
 }
-
 /* ---------- 渲染：赚积分 ---------- */
 function renderEarn(){
   const box=document.getElementById("earnList");
@@ -565,9 +865,10 @@ function renderRedeem(){
     const cd=cdInfo(r);
     const onCd=cd!==null;
     const dis=!enough||onCd;
-    let meta=`<span class="pill violet">${r.cost}分</span>`;
+    let meta=`<span class="pill violet">🪙 ${r.cost} 分</span>`;
     if(r.cooldown) meta+=`<span class="pill gold">${r.cooldown}天/次</span>`;
-    if(r.duration>0 && !r.name.includes("分钟")) meta+=`<span class="pill" style="background:#EAF0FF;color:#3b5bdb">${r.duration}分钟</span>`;
+    if(r.duration>0 && !r.name.includes("分钟")) meta+=`<span class="pill" style="background:#EAF0FF;color:#3b5bdb">🕒 ${r.duration} 分钟</span>`;
+    if(r.money>0) meta+=`<span class="pill" style="background:#FFF3D6;color:#b07d05">💰 ¥${r.money}</span>`;
     return `<div class="card reward">
       <div class="emoji">${r.emoji}</div>
       <div class="body">
@@ -598,6 +899,9 @@ function renderLog(){
 /* ---------- 渲染：设置列表 ---------- */
 function renderSet(){
   document.getElementById("setName").value=S.childName;
+  // 每日观看上限（与合理性计算器共用）
+  const capEl=document.getElementById("calcCap");
+  if(capEl)capEl.value=S.settings.dailyWatch||0;
   // 云同步 UI 同步
   if(S.sync){
     document.getElementById("syncEnable").checked=S.sync.enabled;
@@ -607,24 +911,39 @@ function renderSet(){
     else if(!S.sync.enabled)setSyncStatus("","");
   }
   const ta=document.getElementById("setTasks");
-  ta.innerHTML=S.tasks.map(t=>`
-    <div class="card">
-      <div class="emoji">${t.emoji}</div>
-      <div class="body"><div class="ttl">${t.name}</div>
-      <div class="meta"><span class="pill mint">+${t.points}分</span><span class="pill gold">${t.limit}次/天</span></div></div>
-      <button class="btn ghost" data-editt="${t.id}">编辑</button>
-    </div>`).join("");
+  ta.innerHTML = S.tasks.length ? `
+    <table class="set-table">
+      <thead><tr><th>任务</th><th>设定</th><th style="text-align:right;">操作</th></tr></thead>
+      <tbody>${S.tasks.map(t=>`
+        <tr>
+          <td class="nm"><span class="em">${t.emoji}</span>${t.name}</td>
+          <td class="set">+${t.points}分 · ${t.limit}次/天</td>
+          <td class="op">
+            <button class="btn ghost" data-editt="${t.id}">编辑</button>
+            <button class="btn del" data-delt="${t.id}">删除</button>
+          </td>
+        </tr>`).join("")}</tbody>
+    </table>` : `<div class="set-empty">暂无任务，点下方「＋ 添加任务」</div>`;
   ta.querySelectorAll("[data-editt]").forEach(b=>b.onclick=()=>openEdit("task",b.dataset.editt));
+  ta.querySelectorAll("[data-delt]").forEach(b=>b.onclick=()=>delItem("task",b.dataset.delt));
 
   const ra=document.getElementById("setRewards");
-  ra.innerHTML=S.rewards.map(r=>`
-    <div class="card">
-      <div class="emoji">${r.emoji}</div>
-      <div class="body"><div class="ttl">${r.name}</div>
-      <div class="meta"><span class="pill violet">${r.cost}分</span>${r.cooldown?`<span class="pill gold">${r.cooldown}天/次</span>`:""}</div></div>
-      <button class="btn ghost" data-editr="${r.id}">编辑</button>
-    </div>`).join("");
+  ra.innerHTML = S.rewards.length ? `
+    <table class="set-table">
+      <thead><tr><th>奖励</th><th>设定</th><th style="text-align:right;">操作</th></tr></thead>
+      <tbody>${S.rewards.map(r=>`
+        <tr>
+          <td class="nm"><span class="em">${r.emoji}</span>${r.name}</td>
+          <td class="set">🪙 ${r.cost}分${r.cooldown?` · ${r.cooldown}天/次`:""}${r.duration>0?` · ${r.duration}分钟`:""}${r.money>0?` · ¥${r.money}`:""}</td>
+          <td class="op">
+            <button class="btn ghost" data-editr="${r.id}">编辑</button>
+            <button class="btn del" data-delr="${r.id}">删除</button>
+          </td>
+        </tr>`).join("")}</tbody>
+    </table>` : `<div class="set-empty">暂无奖励，点下方「＋ 添加奖励」</div>`;
   ra.querySelectorAll("[data-editr]").forEach(b=>b.onclick=()=>openEdit("reward",b.dataset.editr));
+  ra.querySelectorAll("[data-delr]").forEach(b=>b.onclick=()=>delItem("reward",b.dataset.delr));
+  renderLottery();
   calcRationality();
 }
 
@@ -649,7 +968,8 @@ function doRedeem(id){
   pendingRedeem=r;
   document.getElementById("cfEmoji").textContent=r.emoji;
   document.getElementById("cfTitle").textContent="兑换 "+r.name;
-  document.getElementById("cfDesc").textContent=`将扣除 ${r.cost} 积分${r.duration>0?`，获得 ${r.duration} 分钟`:""}，当前余额 ${S.balance} 分。`;
+  const gain = r.money>0 ? `获得 ¥${r.money}` : (r.duration>0 ? `获得 ${r.duration} 分钟` : "");
+  document.getElementById("cfDesc").textContent=`将扣除 ${r.cost} 积分${gain?`，${gain}`:""}，当前余额 ${S.balance} 分。`;
   openSheet("confirmSheet");
 }
 document.getElementById("cfOk").onclick=()=>{
@@ -658,7 +978,7 @@ document.getElementById("cfOk").onclick=()=>{
   pushLog("redeem",r.emoji,r.name,r.cost);
   save(); closeSheet("confirmSheet"); afterChange();
   bumpBalance();
-  toast(r.emoji, r.duration>0?`${r.duration} 分钟到手！`:"兑换成功！");
+  toast(r.emoji, r.money>0?`到账 ¥${r.money}！`:(r.duration>0?`${r.duration} 分钟到手！`:"兑换成功！"));
   pendingRedeem=null;
   if(r.duration>0) startTimerFor(r);
   else updateTmChip();
@@ -810,12 +1130,12 @@ function stopAlarm(){if(alarmTimer){clearInterval(alarmTimer);alarmTimer=null;}i
 document.getElementById("cfCancel").onclick=()=>{closeSheet("confirmSheet");pendingRedeem=null;};
 
 /* ---------- 日志 ---------- */
-function pushLog(type,emoji,name,amount){
+function pushLog(type,emoji,name,amount,unit){
   const d=new Date();
-  S.log.push({type,emoji,name,amount,date:today(),
+  S.log.push({type,emoji,name,amount,unit:unit||"",date:today(),
     time:String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")});
   if(S.log.length>300)S.log=S.log.slice(-300);
-  if(type==="earn")todayEarn+=amount;else todaySpend+=amount;
+  if(type==="earn")todayEarn+=amount;else if(type==="redeem")todaySpend+=amount;
 }
 
 /* ---------- 统一刷新 ---------- */
@@ -847,8 +1167,23 @@ function bumpBalance(){
 function openSheet(id){document.getElementById(id).classList.add("on");}
 function closeSheet(id){document.getElementById(id).classList.remove("on");}
 document.querySelectorAll(".sheet").forEach(s=>s.addEventListener("click",e=>{
-  if(e.target===s && s.id!=="confirmSheet" && s.id!=="timerSheet") closeSheet(s.id);
+  if(e.target===s && s.id!=="confirmSheet" && s.id!=="timerSheet" && s.id!=="confirmDialog" && s.id!=="mysterySheet" && s.id!=="prizeSheet") closeSheet(s.id);
 }));
+
+/* ---------- 通用确认弹层（替代原生 confirm，WebView 安全） ---------- */
+let confirmCb=null;
+function showConfirm(opts){
+  document.getElementById("cdEmoji").textContent=opts.emoji||"⚠️";
+  document.getElementById("cdTitle").textContent=opts.title||"确认";
+  document.getElementById("cdDesc").textContent=opts.desc||"";
+  const ok=document.getElementById("cdOk");
+  ok.textContent=opts.okText||"确定";
+  ok.className="btn"+(opts.danger?" danger":"");
+  confirmCb=opts.onYes||null;
+  openSheet("confirmDialog");
+}
+document.getElementById("cdOk").onclick=()=>{closeSheet("confirmDialog");const cb=confirmCb;confirmCb=null;cb&&cb();};
+document.getElementById("cdCancel").onclick=()=>{closeSheet("confirmDialog");confirmCb=null;};
 
 /* ---------- 编辑弹层（任务/奖励） ---------- */
 let editKind=null, editId=null;
@@ -862,16 +1197,56 @@ function openEdit(kind,id){
   document.getElementById("f_limLabel").textContent=isTask?"每日上限":"冷却天数";
   document.getElementById("f_val").value=isTask?item.points:item.cost;
   document.getElementById("f_lim").value=isTask?item.limit:(item.cooldown||0);
-  document.getElementById("f_durField").style.display=isTask?"none":"block";
   document.getElementById("f_dur").value=isTask?0:(item.duration||0);
+  document.getElementById("f_money").value=isTask?0:(item.money||0);
+  document.getElementById("f_catField").style.display=isTask?"none":"block";
+  if(!isTask) setCat(item.cat==="goods"?"goods":"screen");
   document.getElementById("f_hint").textContent=isTask
     ? "积分/上限决定来源速度，给太高会通胀。建议单次 8-12 分、上限 2-3 次。"
-    : "需要积分即花费(Sink)，冷却=多少天才能再兑一次。0 表示不限制。";
+    : "";
+  clearEditErr();
   buildEmojiPicker(item.emoji);
   openSheet("editSheet");
 }
-function buildEmojiPicker(cur){
-  const box=document.getElementById("f_emoji");box.innerHTML="";
+/* 奖励类型切换：屏幕观看类显示「时长」，实物金额类显示「金额」 */
+function setCat(cat){
+  const seg=document.getElementById("f_cat");
+  seg.querySelectorAll("input").forEach(i=>i.checked=(i.value===cat));
+  const isScreen=cat==="screen";
+  document.getElementById("f_durField").style.display=isScreen?"block":"none";
+  document.getElementById("f_moneyField").style.display=isScreen?"none":"block";
+  const hint=document.getElementById("f_hint");
+  const cap=S.settings.dailyWatch||0;
+  if(isScreen){
+    hint.innerHTML="需要积分即花费(Sink)，冷却=多少天才能再兑一次。0 表示不限制。"+
+      (cap>0?`<br>📺 当前每日观看上限 <b>${cap} 分钟</b>：单个奖励时长、以及全部观看类奖励时长合计都不能超过它，超了无法添加。`:
+               `<br>📺 当前未设每日观看上限（0=不限制），可在设置页顶部「合理性计算器」里设置。`);
+  }else{
+    hint.textContent="需要积分即花费(Sink)。购物/买东西类填「金额」，兑换后按金额给付，不占用观看时间。";
+  }
+}
+/* 观看类奖励时长上限校验：返回错误信息或 null。
+   规则：仅当改动会让「观看类总时长」超过上限、且比改动前更差时才拦截，避免误伤已超标的旧数据。 */
+function watchCheck(name,cat,dur,excludeId,existingSelf){
+  if(cat!=="screen") return null;
+  const cap=S.settings.dailyWatch||0;
+  if(cap<=0) return null;                       // 未设上限 = 不限制
+  const used=S.rewards.filter(r=>r.cat==="screen"&&r.id!==excludeId)
+                       .reduce((a,r)=>a+(r.duration||0),0);
+  const existingTotal=used+(existingSelf||0);  // 改动前该类型总时长
+  const proposedTotal=used+dur;                 // 改动后总时长
+  if(dur>cap && dur>(existingSelf||0)){
+    return `「${name}」单次观看 ${dur} 分钟，已超过每日观看上限 ${cap} 分钟，无法添加观看类奖励。`;
+  }
+  if(proposedTotal>cap && proposedTotal>existingTotal){
+    return `调整后所有观看类奖励时长合计达 ${proposedTotal} 分钟，超过每日观看上限 ${cap} 分钟，无法再添加或调高该类奖励。`;
+  }
+  return null;
+}
+function showEditErr(msg){const e=document.getElementById("editErr");e.textContent=msg;e.classList.add("on");}
+function clearEditErr(){const e=document.getElementById("editErr");e.textContent="";e.classList.remove("on");}
+function buildEmojiPicker(cur,cid){
+  const box=document.getElementById(cid||"f_emoji");box.innerHTML="";
   EMOJIS.forEach(e=>{
     const b=document.createElement("button");b.textContent=e;
     if(e===cur)b.classList.add("on");
@@ -879,7 +1254,7 @@ function buildEmojiPicker(cur){
     box.appendChild(b);
   });
 }
-function curEmoji(){const o=document.querySelector("#f_emoji button.on");return o?o.textContent:EMOJIS[0];}
+function curEmoji(cid){const o=document.querySelector((cid||"f_emoji")+" button.on");return o?o.textContent:EMOJIS[0];}
 document.getElementById("editCancel").onclick=()=>closeSheet("editSheet");
 document.getElementById("editSave").onclick=()=>{
   const name=document.getElementById("f_name").value.trim();
@@ -889,7 +1264,18 @@ document.getElementById("editSave").onclick=()=>{
   const item=editKind==="task"?S.tasks.find(x=>x.id===editId):S.rewards.find(x=>x.id===editId);
   item.name=name; item.emoji=curEmoji();
   if(editKind==="task"){item.points=val;item.limit=lim;}
-  else{item.cost=val;item.cooldown=lim;item.duration=Math.max(0,parseInt(document.getElementById("f_dur").value||"0",10));}
+  else{
+    const cat=document.querySelector('#f_cat input:checked').value;
+    const dur=Math.max(0,parseInt(document.getElementById("f_dur").value||"0",10));
+    const money=Math.max(0,parseInt(document.getElementById("f_money").value||"0",10));
+    // 观看类奖励时长上限校验：超标则拦截，不关闭弹层
+    const err=watchCheck(name,cat,dur,editId,(item.duration||0));
+    if(err){showEditErr(err);return;}
+    item.cost=val;item.cooldown=lim;item.cat=cat;
+    if(cat==="screen"){item.duration=dur;item.money=0;}
+    else{item.money=money;item.duration=0;}
+  }
+  clearEditErr();
   save();closeSheet("editSheet");afterChange();renderSet();
   toast("✅","已保存");
 };
@@ -900,9 +1286,222 @@ document.getElementById("addTaskBtn").onclick=()=>{
 };
 document.getElementById("addRewardBtn").onclick=()=>{
   const id="r"+Date.now();
-  S.rewards.push({id,name:"新奖励",emoji:"🎁",cost:30,cooldown:1,duration:30});
+  S.rewards.push({id,name:"新奖励",emoji:"🎁",cost:30,cooldown:1,duration:30,money:0,cat:"screen"});
   save();renderSet();openEdit("reward",id);
 };
+document.querySelectorAll('#f_cat input').forEach(i=>i.addEventListener('change',()=>setCat(i.value)));
+function delItem(kind,id){
+  const list=kind==="task"?S.tasks:S.rewards;
+  const item=list.find(x=>x.id===id);if(!item)return;
+  showConfirm({emoji:"🗑️",title:"删除确认",desc:`确定删除「${item.name}」吗？此操作不可恢复。`,okText:"删除",danger:true,onYes:()=>{
+    if(kind==="task")S.tasks=S.tasks.filter(x=>x.id!==id);
+    else S.rewards=S.rewards.filter(x=>x.id!==id);
+    save();afterChange();renderSet();
+    toast("🗑️","已删除");
+  }});
+}
+
+/* ---------- 幸运抽奖 ---------- */
+let lotBet=5;                     // 当前选中下注档位
+let lotCurBet=5, lotCurMode="single";  // 最近一次抽奖参数（用于"再来一次"）
+
+function randInt(a,b){a=Math.floor(a);b=Math.floor(b);if(b<a){const t=a;a=b;b=t;}return Math.floor(Math.random()*(b-a+1))+a;}
+function pickWeighted(arr){
+  const total=arr.reduce((s,p)=>s+(p.weight||1),0);
+  if(total<=0)return arr[arr.length-1];
+  let r=Math.random()*total;
+  for(const p of arr){ r-=(p.weight||1); if(r<=0) return p; }
+  return arr[arr.length-1];
+}
+function addCoupon(amt){
+  S.mystery.coupons.push({id:"c"+Date.now()+"_"+Math.floor(Math.random()*9999),amount:amt,time:today(),used:false});
+}
+/* 抽一次：返回奖品结果（不负责扣下注分，由 runDraw 统一扣） */
+function rollPrize(bet){
+  const idx=S.mystery.bets.indexOf(bet);
+  const pct=(S.mystery.jackpotPct[idx]!=null?S.mystery.jackpotPct[idx]:0)/100;
+  if(Math.random()<pct){
+    const amt=S.mystery.jackpotAmt;
+    addCoupon(amt);
+    return {jack:true,emoji:"💎",name:"极品·超级现金券",cash:amt,points:0};
+  }
+  const p=pickWeighted(S.mystery.pool);
+  if(p.kind==="cash"){
+    const amt=randInt(S.mystery.cashMin,S.mystery.cashMax);
+    addCoupon(amt);
+    return {jack:false,emoji:p.emoji,name:p.name,cash:amt,points:0};
+  } else if(p.kind==="points"){
+    const pts=p.points||0; S.balance+=pts;
+    return {jack:false,emoji:p.emoji,name:p.name,cash:0,points:pts};
+  }
+  return {jack:false,emoji:p.emoji,name:p.name,cash:0,points:0};
+}
+function runDraw(mode,bet){
+  if(!S.mystery.enabled||!S.mystery.pool.length)return;
+  if(mode==="ten" && !S.mystery.tenDraw)return;
+  const n=mode==="ten"?10:1;
+  const cost=bet*n;
+  if(S.balance<cost){toast("😅","积分不够，去赚点分吧");return;}
+  S.balance-=cost;
+  lotCurBet=bet; lotCurMode=mode;
+  const results=[];
+  for(let i=0;i<n;i++) results.push(rollPrize(bet));
+  // 仅记录有奖励的结果
+  results.forEach(r=>{
+    if(r.cash>0) pushLog("mystery",r.emoji,r.name,r.cash,"元");
+    else if(r.points>0) pushLog("mystery",r.emoji,r.name,r.points);
+  });
+  save();afterChange();
+  showDrawResults(results,mode);
+}
+document.getElementById("lotSingleBtn").onclick=()=>runDraw("single",lotBet);
+document.getElementById("lotTenBtn").onclick=()=>runDraw("ten",lotBet);
+document.getElementById("lotAgainBtn").onclick=()=>{
+  const need=lotCurMode==="ten"?lotCurBet*10:lotCurBet;
+  if(S.balance<need){toast("😅","积分不够再来一次");return;}
+  runDraw(lotCurMode,lotCurBet);
+};
+document.getElementById("mysteryCloseBtn").onclick=()=>{closeSheet("mysterySheet");renderHome();};
+
+function showDrawResults(results,mode){
+  const stage=document.getElementById("mysteryStage");
+  if(mode==="ten"){
+    stage.innerHTML=`<div class="draw-grid">${results.map(r=>{
+      const sub=r.cash>0?("¥"+r.cash):(r.points>0?("+"+r.points+"分"):"谢谢参与");
+      return `<div class="dc-card ${r.jack?"jack":""}">
+        <div class="dc-emoji">${r.emoji}</div>
+        <div class="dc-name">${r.name}</div>
+        <div class="dc-sub">${sub}</div>
+      </div>`;
+    }).join("")}</div>`;
+  } else {
+    const r=results[0];
+    const sub=r.cash>0?(`现金券 ¥${r.cash}`):(r.points>0?(`+${r.points} 分 🎉`):"谢谢参与，再接再厉 🍃");
+    stage.innerHTML=`<div class="prize-emoji">${r.emoji}</div><div class="prize-name">${r.name}</div><div class="prize-pts">${sub}</div>`;
+  }
+  const again=document.getElementById("lotAgainBtn");
+  const need=lotCurMode==="ten"?lotCurBet*10:lotCurBet;
+  again.disabled=S.balance<need;
+  again.textContent=S.balance<need?"积分不足":"再来一次";
+  if(navigator.vibrate)navigator.vibrate(results.some(r=>r.jack)?[200,100,200,100,300]:120);
+  openSheet("mysterySheet");
+}
+
+/* 现金奖励券：家长核销 */
+function openCoupons(){
+  const stage=document.getElementById("couponStage");
+  const pending=S.mystery.coupons.filter(c=>!c.used);
+  const used=S.mystery.coupons.filter(c=>c.used);
+  const pTotal=pending.reduce((a,c)=>a+c.amount,0);
+  const uTotal=used.reduce((a,c)=>a+c.amount,0);
+  let html=`<div class="cp-total"><span>待发放：</span><b>¥${pTotal}（${pending.length}张）</b></div>`;
+  if(pending.length){
+    html+=pending.map(c=>`<div class="cp-row">
+      <div class="cp-amt">¥${c.amount}</div>
+      <div class="cp-meta">抽中于 ${c.time}</div>
+      <button class="btn ghost" data-cash="${c.id}">已发放</button>
+    </div>`).join("");
+  } else { html+=`<div class="set-empty">暂无待发放现金券 🎉</div>`; }
+  if(used.length){
+    html+=`<div class="cp-total" style="margin-top:8px;border-top:1px dashed #ddd;"><span>已发放：</span><b>¥${uTotal}（${used.length}张）</b></div>`;
+    html+=used.map(c=>`<div class="cp-row used">
+      <div class="cp-amt">¥${c.amount}</div>
+      <div class="cp-meta">已发放 · ${c.time}</div>
+      <button class="btn ghost" data-cashd="${c.id}">撤回</button>
+    </div>`).join("");
+  }
+  stage.innerHTML=html;
+  stage.querySelectorAll("[data-cash]").forEach(b=>b.onclick=()=>{
+    const c=S.mystery.coupons.find(x=>x.id===b.dataset.cash); if(c)c.used=true; save();openCoupons();
+  });
+  stage.querySelectorAll("[data-cashd]").forEach(b=>b.onclick=()=>{
+    const c=S.mystery.coupons.find(x=>x.id===b.dataset.cashd); if(c)c.used=false; save();openCoupons();
+  });
+  openSheet("couponSheet");
+}
+document.getElementById("couponClose").onclick=()=>closeSheet("couponSheet");
+
+/* 设置页：抽奖配置 + 普通奖池 */
+function renderLottery(){
+  document.getElementById("mysteryOn").checked=S.mystery.enabled;
+  S.mystery.bets.forEach((b,i)=>{const el=document.getElementById("bet"+i);if(el)el.value=b;});
+  S.mystery.jackpotPct.forEach((p,i)=>{const el=document.getElementById("jp"+i);if(el)el.value=p;});
+  document.getElementById("tenDrawOn").checked=S.mystery.tenDraw;
+  document.getElementById("cashMin").value=S.mystery.cashMin;
+  document.getElementById("cashMax").value=S.mystery.cashMax;
+  document.getElementById("jackpotAmt").value=S.mystery.jackpotAmt;
+  const box=document.getElementById("mysteryPrizes");
+  box.innerHTML=S.mystery.pool.length?`
+    <table class="set-table">
+      <thead><tr><th>奖品</th><th>类型·数值</th><th style="text-align:right;">操作</th></tr></thead>
+      <tbody>${S.mystery.pool.map(p=>`
+        <tr>
+          <td class="nm"><span class="em">${p.emoji}</span>${p.name}</td>
+          <td class="set">${p.kind==="cash"?"💵现金券":p.kind==="points"?("⭐+"+(p.points||0)+"分"):"🍃无奖励"} · 权重${p.weight}</td>
+          <td class="op">
+            <button class="btn ghost" data-pedit="${p.id}">编辑</button>
+            <button class="btn del" data-pdel="${p.id}">删除</button>
+          </td>
+        </tr>`).join("")}</tbody>
+    </table>`:`<div class="set-empty">暂无奖品，点下方添加</div>`;
+  box.querySelectorAll("[data-pedit]").forEach(b=>b.onclick=()=>openPrize(b.dataset.pedit));
+  box.querySelectorAll("[data-pdel]").forEach(b=>b.onclick=()=>delPrize(b.dataset.pdel));
+}
+let prizeId=null;
+function openPrize(id){
+  prizeId=id||null;
+  const p=id?S.mystery.pool.find(x=>x.id===id):null;
+  document.getElementById("prizeTitle").textContent=id?"编辑奖品":"添加奖品";
+  document.getElementById("pz_name").value=p?p.name:"";
+  document.getElementById("pz_kind").value=p?p.kind:"cash";
+  document.getElementById("pz_points").value=p?((p.points||0)):8;
+  document.getElementById("pz_weight").value=p?(p.weight||1):35;
+  const pf=document.getElementById("pz_ptsField");
+  pf.style.display=(p&&p.kind==="points")?"":"none";
+  document.getElementById("pz_kind").onchange=e=>{pf.style.display=e.target.value==="points"?"":"none";};
+  buildEmojiPicker(p?p.emoji:"🎁","pz_emoji");
+  openSheet("prizeSheet");
+}
+function delPrize(id){
+  const item=S.mystery.pool.find(x=>x.id===id);if(!item)return;
+  showConfirm({emoji:"🗑️",title:"删除奖品",desc:`确定删除奖品「${item.name}」吗？`,okText:"删除",danger:true,onYes:()=>{
+    S.mystery.pool=S.mystery.pool.filter(x=>x.id!==id);
+    save();renderLottery();
+  }});
+}
+document.getElementById("addPrizeBtn").onclick=()=>openPrize(null);
+document.getElementById("prizeCancel").onclick=()=>closeSheet("prizeSheet");
+document.getElementById("prizeSave").onclick=()=>{
+  const name=document.getElementById("pz_name").value.trim();
+  if(!name){toast("✏️","请填写奖品名称");return;}
+  const kind=document.getElementById("pz_kind").value;
+  const points=Math.max(0,parseInt(document.getElementById("pz_points").value||"0",10));
+  const weight=Math.max(1,parseInt(document.getElementById("pz_weight").value||"1",10));
+  const emoji=curEmoji("pz_emoji");
+  const obj={emoji,name,kind,weight};
+  if(kind==="points")obj.points=points;
+  if(prizeId){
+    const p=S.mystery.pool.find(x=>x.id===prizeId);
+    Object.assign(p,obj);
+  }else{
+    S.mystery.pool.push(Object.assign({id:"p"+Date.now()},obj));
+  }
+  save();closeSheet("prizeSheet");renderLottery();
+  toast("✅","已保存");
+};
+document.getElementById("mysteryOn").onchange=e=>{S.mystery.enabled=e.target.checked;save();renderHome();};
+["bet0","bet1","bet2"].forEach((id,i)=>{
+  const el=document.getElementById(id);if(!el)return;
+  el.onchange=()=>{const v=Math.max(1,parseInt(el.value||"0",10)||0);S.mystery.bets[i]=v;if(!S.mystery.bets.includes(lotBet))lotBet=v;save();renderHome();};
+});
+["jp0","jp1","jp2"].forEach((id,i)=>{
+  const el=document.getElementById(id);if(!el)return;
+  el.onchange=()=>{S.mystery.jackpotPct[i]=Math.max(0,parseFloat(el.value||"0")||0);save();renderHome();};
+});
+document.getElementById("tenDrawOn").onchange=e=>{S.mystery.tenDraw=e.target.checked;save();};
+document.getElementById("cashMin").onchange=e=>{S.mystery.cashMin=Math.max(0,parseInt(e.target.value||"0",10)||0);if(S.mystery.cashMin>S.mystery.cashMax)S.mystery.cashMax=S.mystery.cashMin;save();renderHome();};
+document.getElementById("cashMax").onchange=e=>{S.mystery.cashMax=Math.max(S.mystery.cashMin,parseInt(e.target.value||"0",10)||0);save();renderHome();};
+document.getElementById("jackpotAmt").onchange=e=>{S.mystery.jackpotAmt=Math.max(0,parseInt(e.target.value||"0",10)||0);save();};
 
 /* ---------- 家长 PIN ---------- */
 function openPin(cb){
@@ -954,10 +1553,10 @@ document.getElementById("importBtn").onclick=()=>{
   inp.click();
 };
 document.getElementById("resetBtn").onclick=()=>{
-  if(confirm("确定清空全部数据？此操作不可恢复（建议先导出备份）。")){
+  showConfirm({emoji:"⚠️",title:"清空数据",desc:"确定清空全部数据？此操作不可恢复（建议先导出备份）。",okText:"清空",danger:true,onYes:()=>{
     syncReady=false;stopTmInterval();stopAlarm();
     S=JSON.parse(JSON.stringify(DEFAULT));save();init();toast("🗑️","已清空");
-  }
+  }});
 };
 
 /* ---------- 底部导航 ---------- */
@@ -993,14 +1592,18 @@ function calcRationality(){
   const box=document.getElementById('calcResult');
   if(!box)return;
   const rate=clampPct();
-  let cap=parseInt(document.getElementById('calcCap').value,10);if(isNaN(cap))cap=60;
+  const cap=S.settings.dailyWatch||0;     // 与「每日观看上限」共用一个设置
   const daily=Math.floor(S.tasks.reduce((a,t)=>a+t.points*(t.limit||0),0)*rate);
   const tv=findReward('电视'), ipad=findReward('iPad');
   const tvMin=tv?(tv.duration||0):0;
   const ipadMin=ipad?(ipad.duration||0):0;
-  let html=`<div class="tag-hint">日均可赚积分（完成度 ${(rate*100).toFixed(0)}%）：<b style="color:var(--sun-d)">🪙 ${daily}</b>。
-    孩子可攒分，但<b>单日屏幕上限由"兑换冷却 × 每次时长"决定</b>（攒分可跨天累积，不改变单日峰值）。</div>`;
-  if(!tv&&!ipad){box.innerHTML=html+'<div class="empty">未找到「电视」「iPad」奖励，请在上方添加。</div>';return;}
+  let html=`<table class="calc-table"><tbody>`;
+  html+=`<tr><td class="cl">日均可赚积分（完成度 ${(rate*100).toFixed(0)}%）</td><td class="cv"><b style="color:var(--sun-d)">🪙 ${daily}</b></td></tr>`;
+  html+=`<tr><td class="cl" colspan="2" style="color:var(--ink-soft);font-size:11.5px;font-weight:600;background:var(--bg2);">孩子可攒分，但单日屏幕上限由「兑换冷却 × 每次时长」决定（攒分可跨天累积，不改变单日峰值）。</td></tr>`;
+  if(!tv&&!ipad){
+    html+=`</tbody></table><div class="empty">未找到「电视」「iPad」奖励，请在下方添加。</div>`;
+    box.innerHTML=html;return;
+  }
   const items=[];
   if(tv)items.push({name:'电视',cd:tv.cooldown||0,min:tvMin});
   if(ipad)items.push({name:'iPad',cd:ipad.cooldown||0,min:ipadMin});
@@ -1010,23 +1613,34 @@ function calcRationality(){
     else{unbounded=true;parts.push(it.name+'不限次');}
   });
   const comboTxt=parts.join(' + ');
-  if(unbounded){
-    html+=`<div class="tag-hint" style="background:#FDE8EC;color:#B4233A;">
-      ⚠️ <b>无冷却！</b>${comboTxt}，孩子可无限兑换屏幕，必须在上方给该奖励设冷却天数。</div>`;
-  }else if(worstMin>cap){
-    html+=`<div class="tag-hint" style="background:#FDE8EC;color:#B4233A;">
-      ⚠️ <b>超标！</b>单日最坏屏幕 <b>${worstMin} 分钟</b>（${comboTxt}），超过红线 ${cap} 分钟。<br>
-      压单日峰值的办法：① 缩短每次时长 ② 只保留一个屏幕奖励 ③ 把电视/iPad 合并为"共享每日1次"（二选一留一个）。<br>
-      <span style="font-size:11px;opacity:.85">注：提高积分、或把冷却从1天改成更多天，都只降频率、不降单日峰值（孩子可攒分跨天在同一天兑掉）。</span></div>`;
-  }else{
-    html+=`<div class="tag-hint" style="background:#E4F8F2;color:#0C7A6B;">
-      ✅ <b>合理。</b>单日最坏屏幕 <b>${worstMin} 分钟</b>（${comboTxt}），在 ${cap} 分钟红线内，安全边际 ${cap-worstMin} 分钟。</div>`;
+  html+=`<tr><td class="cl">单日最坏屏幕时间</td><td class="cv">${unbounded?'<span style="color:#B4233A;">不限（无冷却）</span>':worstMin+' 分钟'}</td></tr>`;
+  if(cap<=0){
+    html+=`<tr><td class="cl">每日观看上限（红线）</td><td class="cv">未设置（0=不限制）</td></tr>`;
+    html+=`</tbody></table><div class="tag-hint">未设置每日观看上限（当前为 0 = 不限制）。设一个上限后，这里会对比红线，它也会作为观看类奖励的硬上限。</div>`;
+    box.innerHTML=html;return;
   }
+  html+=`<tr><td class="cl">每日观看上限（红线）</td><td class="cv">${cap} 分钟</td></tr>`;
+  if(unbounded){
+    html+=`<tr><td class="cl">结论</td><td class="cv" style="color:#B4233A;line-height:1.5;"><b>⚠️ 无冷却！</b>${comboTxt}，孩子可无限兑换屏幕，必须给该奖励设冷却天数。</td></tr>`;
+  }else if(worstMin>cap){
+    html+=`<tr><td class="cl">结论</td><td class="cv" style="color:#B4233A;line-height:1.5;"><b>⚠️ 超标！</b>单日最坏 ${worstMin} 分钟，超过红线 ${cap} 分钟。<br>压峰值：① 缩短每次时长 ② 只留一个屏幕奖励 ③ 合并电视/iPad 为共享每日1次。</td></tr>`;
+  }else{
+    html+=`<tr><td class="cl">结论</td><td class="cv" style="color:#0C7A6B;line-height:1.5;"><b>✅ 合理。</b>在 ${cap} 分钟红线内，安全边际 ${cap-worstMin} 分钟。</td></tr>`;
+  }
+  html+=`</tbody></table>`;
   box.innerHTML=html;
 }
 function attachCalc(){
   ['calcRate','calcCap'].forEach(id=>{
-    const el=document.getElementById(id);if(el)el.addEventListener('input',calcRationality);
+    const el=document.getElementById(id);
+    if(!el)return;
+    el.addEventListener('input',()=>{
+      if(id==='calcCap'){
+        S.settings.dailyWatch=Math.max(0,parseInt(el.value||"0",10)||0);
+        save();
+      }
+      calcRationality();
+    });
   });
 }
 
