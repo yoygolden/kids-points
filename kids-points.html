@@ -131,6 +131,25 @@
   .calc-table .cv{font-weight:700;color:var(--ink);text-align:right;}
   .calc-table input{width:78px;text-align:center;}
 
+  /* 紧凑计算器（重排版：约为原篇幅 1/3） */
+  .calc-inline{display:flex;gap:8px;}
+  .calc-inline label{flex:1;display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--ink-soft);background:var(--bg2);border-radius:10px;padding:7px 9px;min-width:0;}
+  .calc-inline input{flex:1;width:100%;min-width:0;border:0;background:transparent;font-size:15px;font-weight:800;color:var(--ink);text-align:right;}
+  .calc-inline b{flex:none;font-size:12px;color:var(--ink-soft);}
+  .calc-result{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;}
+  .calc-tag{display:inline-flex;align-items:center;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--bg2);color:var(--ink-soft);}
+  .calc-tag.ok{background:#E4F8F2;color:#0C7A6B;}
+  .calc-tag.bad{background:#FDE8EC;color:#B4233A;}
+
+  /* 紧凑抽奖配置（重排版：约为原篇幅 1/2） */
+  .lot-grid{margin-top:10px;display:grid;gap:7px;}
+  .lot-row{display:flex;align-items:center;gap:8px;}
+  .lot-row>span{flex:none;width:62px;font-size:12px;font-weight:700;color:var(--ink-soft);}
+  .mini3,.mini2{display:flex;gap:6px;flex:1;min-width:0;}
+  .mini3 input,.mini2 input,.mini1{flex:1;min-width:0;width:100%;border:1px solid var(--line);border-radius:9px;padding:7px 4px;font-size:14px;font-weight:800;text-align:center;background:var(--card);color:var(--ink);}
+  .mini1{flex:1;width:auto;}
+  .link-btn{display:inline-block;margin-top:10px;font-size:12.5px;font-weight:800;color:var(--mint);background:none;border:0;cursor:pointer;padding:4px 0;}
+
   /* 危险/确定按钮 */
   .btn.danger{background:#e74c3c;color:#fff;border:0;}
   .btn.danger:active{transform:scale(.94);filter:brightness(.96);}
@@ -399,22 +418,13 @@
         </div>
       </div>
 
-      <div class="section-t" style="font-size:14px;">🧮 积分设置合理性计算器</div>
+      <div class="section-t" style="font-size:13px;">🧮 合理性 · 每日观看上限</div>
       <div class="card" style="display:block;">
-        <table class="calc-table">
-          <tbody>
-            <tr>
-              <td class="cl">假设每日完成度</td>
-              <td class="cv"><input id="calcRate" type="number" min="0" max="100" value="70"> %</td>
-            </tr>
-            <tr>
-              <td class="cl">每日观看时间上限（分钟 · 家长红线，也是观看类奖励的硬上限）</td>
-              <td class="cv"><input id="calcCap" type="number" min="0" value="120"></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="tag-hint">电视/iPad 的「每次时长」直接取自下方奖励设置，改奖励里的时长这里会自动更新。</div>
-        <div id="calcResult"></div>
+        <div class="calc-inline">
+          <label>完成度<input id="calcRate" type="number" min="0" max="100" value="70"><b>%</b></label>
+          <label>上限<input id="calcCap" type="number" min="0" value="120"><b>分</b></label>
+        </div>
+        <div id="calcResult" class="calc-result"></div>
       </div>
       <div class="tag-hint">💡 下面的内容只有家长能改。已用密码保护，防止小朋友偷偷加奖励。</div>
       <div style="display:flex;gap:10px;margin-bottom:12px;">
@@ -426,43 +436,32 @@
       <div class="section-t" style="font-size:14px;">可兑换奖励</div>
       <div id="setRewards"></div>
 
-      <div class="section-t" style="font-size:14px;">🎰 幸运抽奖</div>
+      <div class="section-t" style="font-size:13px;">🎰 幸运抽奖</div>
       <div class="card" style="display:block;">
         <label class="switch-row"><span>开启抽奖功能</span><input type="checkbox" id="mysteryOn"></label>
-
-        <div class="field" style="margin-top:12px;"><label>下注档位（积分 · 三档）</label>
-          <div style="display:flex;gap:8px;">
-            <input id="bet0" type="number" min="0" style="flex:1;">
-            <input id="bet1" type="number" min="0" style="flex:1;">
-            <input id="bet2" type="number" min="0" style="flex:1;">
-          </div>
+        <div class="lot-grid">
+          <div class="lot-row"><span>下注档位</span><div class="mini3"><input id="bet0" type="number" min="0"><input id="bet1" type="number" min="0"><input id="bet2" type="number" min="0"></div></div>
+          <div class="lot-row"><span>极品概率%</span><div class="mini3"><input id="jp0" type="number" min="0" step="0.01"><input id="jp1" type="number" min="0" step="0.01"><input id="jp2" type="number" min="0" step="0.01"></div></div>
+          <div class="lot-row"><span>现金券¥</span><div class="mini2"><input id="cashMin" type="number" min="0"><input id="cashMax" type="number" min="0"></div></div>
+          <div class="lot-row"><span>极品¥</span><input id="jackpotAmt" type="number" min="0" class="mini1"></div></div>
         </div>
-
-        <div class="field" style="margin-top:8px;"><label>极品概率（% · 对应上面三档）</label>
-          <div style="display:flex;gap:8px;">
-            <input id="jp0" type="number" min="0" step="0.01" style="flex:1;">
-            <input id="jp1" type="number" min="0" step="0.01" style="flex:1;">
-            <input id="jp2" type="number" min="0" step="0.01" style="flex:1;">
-          </div>
+        <label class="switch-row" style="margin-top:10px;"><span>允许十连抽</span><input type="checkbox" id="tenDrawOn"></label>
+        <button class="link-btn" id="lotPoolToggle">▸ 普通奖池管理</button>
+        <div id="lotPoolBox" style="display:none;">
+          <div id="mysteryPrizes"></div>
+          <button class="btn ghost" style="width:100%;margin-top:8px;" id="addPrizeBtn">＋ 添加奖品</button>
         </div>
-
-        <label class="switch-row" style="margin-top:12px;"><span>允许十连抽</span><input type="checkbox" id="tenDrawOn"></label>
-
-        <div class="row2" style="margin-top:12px;">
-          <div class="field" style="margin:0;"><label>现金券下限（元）</label><input id="cashMin" type="number" min="0"></div>
-          <div class="field" style="margin:0;"><label>现金券上限（元）</label><input id="cashMax" type="number" min="0"></div>
-        </div>
-
-        <div class="field" style="margin-top:8px;"><label>极品奖励金额（元）</label><input id="jackpotAmt" type="number" min="0"></div>
-
-        <div class="section-t" style="font-size:13px;margin:14px 0 6px;">🎲 普通奖池（极品以外）</div>
-        <div id="mysteryPrizes"></div>
-        <button class="btn ghost" style="width:100%;margin-top:8px;" id="addPrizeBtn">＋ 添加奖品</button>
       </div>
 
-      <div class="card" style="display:block;margin-top:6px;">
+      <!-- 账号云同步（GitHub/Railway 方式，推荐·跨设备） -->
+      <div class="card" style="display:none;margin-top:6px;" id="acctCard">
+        <div class="section-t" style="margin:0 0 8px;font-size:14px;">👤 账号云同步（推荐·跨设备）</div>
+        <div id="acctPanel"></div>
+      </div>
+
+      <div class="card" style="display:block;margin-top:6px;" id="syncCard">
         <div class="sync-row">
-          <div class="section-t" style="margin:0;font-size:14px;">☁️ 云同步（多设备共享）</div>
+          <div class="section-t" style="margin:0;font-size:14px;">☁️ 云同步（多设备共享·家庭码）</div>
           <label class="switch"><input type="checkbox" id="syncEnable"><span class="sl"></span></label>
         </div>
         <div class="tag-hint" style="margin-top:10px;">开启后，输入同一个「家庭同步码」的所有设备（手机/平板/电脑）共享同一份积分和记录。首次启用会拉取该码已有数据，没有则把当前数据作为初始。</div>
@@ -494,7 +493,7 @@
         </div>
         <button class="btn ghost" style="width:100%;margin-top:10px;color:var(--rose);border-color:#FBD5DC;" id="resetBtn">清空全部数据</button>
       </div>
-      <div class="credit">本地存储 · 离线可用 · 数据只存在这台设备</div>
+      <div class="credit">本地存储 · 离线可用 · 可开启账号云同步跨设备共享</div>
     </section>
   </div>
 
@@ -550,10 +549,7 @@
   <div class="panel">
     <h3 class="ph">🔐 家长验证</h3>
     <p style="font-size:13px;color:var(--ink-soft);margin:0 0 10px;">请输入家长密码，才能进入设置。</p>
-    <div class="pinpad">
-      <input inputmode="numeric" maxlength="1"><input inputmode="numeric" maxlength="1">
-      <input inputmode="numeric" maxlength="1"><input inputmode="numeric" maxlength="1">
-    </div>
+    <div class="pinpad" id="pinPad"></div>
     <div id="pinErr" style="color:var(--rose);font-size:12px;text-align:center;height:16px;"></div>
     <div class="actions">
       <button class="btn" style="width:100%;" id="pinOk">进入</button>
@@ -754,6 +750,7 @@ function load(){
 function save(push){
   try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){alert("保存失败：浏览器可能禁止本地存储，请用固定网址打开。");}
   if(push!==false)schedulePush();
+  scheduleAcctPush();
 }
 
 /* ---------- 日期工具 ---------- */
@@ -1502,22 +1499,36 @@ document.getElementById("tenDrawOn").onchange=e=>{S.mystery.tenDraw=e.target.che
 document.getElementById("cashMin").onchange=e=>{S.mystery.cashMin=Math.max(0,parseInt(e.target.value||"0",10)||0);if(S.mystery.cashMin>S.mystery.cashMax)S.mystery.cashMax=S.mystery.cashMin;save();renderHome();};
 document.getElementById("cashMax").onchange=e=>{S.mystery.cashMax=Math.max(S.mystery.cashMin,parseInt(e.target.value||"0",10)||0);save();renderHome();};
 document.getElementById("jackpotAmt").onchange=e=>{S.mystery.jackpotAmt=Math.max(0,parseInt(e.target.value||"0",10)||0);save();};
+document.getElementById("lotPoolToggle").onclick=()=>{
+  const box=document.getElementById("lotPoolBox");
+  const open=box.style.display!=="none";
+  box.style.display=open?"none":"block";
+  document.getElementById("lotPoolToggle").textContent=open?"▸ 普通奖池管理":"▾ 普通奖池管理";
+  if(!open)renderLottery();
+};
 
 /* ---------- 家长 PIN ---------- */
 function openPin(cb){
-  const pad=document.getElementById("pinSheet");
-  const inputs=pad.querySelectorAll("input");
-  inputs.forEach(i=>i.value="");document.getElementById("pinErr").textContent="";
+  const padBox=document.getElementById("pinPad");
+  const len=Math.max(4,(S.pin||"1234").length);   // 按已设密码位数动态生成输入框
+  padBox.innerHTML="";
+  const inputs=[];
+  for(let i=0;i<len;i++){
+    const inp=document.createElement("input");
+    inp.inputMode="numeric";inp.maxLength=1;
+    padBox.appendChild(inp);inputs.push(inp);
+  }
+  document.getElementById("pinErr").textContent="";
   openSheet("pinSheet");
   inputs[0].focus();
   inputs.forEach((inp,idx)=>{
-    inp.oninput=()=>{inp.value=inp.value.replace(/\D/g,"");if(inp.value&&idx<3)inputs[idx+1].focus();};
+    inp.oninput=()=>{inp.value=inp.value.replace(/\D/g,"");if(inp.value&&idx<inputs.length-1)inputs[idx+1].focus();};
     inp.onkeydown=e=>{if(e.key==="Backspace"&&!inp.value&&idx>0)inputs[idx-1].focus();};
   });
   window.__pinCb=cb;
 }
 document.getElementById("pinOk").onclick=()=>{
-  const v=[...document.querySelectorAll("#pinSheet input")].map(i=>i.value).join("");
+  const v=[...document.querySelectorAll("#pinPad input")].map(i=>i.value).join("");
   if(v===S.pin){closeSheet("pinSheet");const cb=window.__pinCb;window.__pinCb=null;cb&&cb();}
   else{document.getElementById("pinErr").textContent="密码错误，请重试";}
 };
@@ -1597,38 +1608,17 @@ function calcRationality(){
   const tv=findReward('电视'), ipad=findReward('iPad');
   const tvMin=tv?(tv.duration||0):0;
   const ipadMin=ipad?(ipad.duration||0):0;
-  let html=`<table class="calc-table"><tbody>`;
-  html+=`<tr><td class="cl">日均可赚积分（完成度 ${(rate*100).toFixed(0)}%）</td><td class="cv"><b style="color:var(--sun-d)">🪙 ${daily}</b></td></tr>`;
-  html+=`<tr><td class="cl" colspan="2" style="color:var(--ink-soft);font-size:11.5px;font-weight:600;background:var(--bg2);">孩子可攒分，但单日屏幕上限由「兑换冷却 × 每次时长」决定（攒分可跨天累积，不改变单日峰值）。</td></tr>`;
-  if(!tv&&!ipad){
-    html+=`</tbody></table><div class="empty">未找到「电视」「iPad」奖励，请在下方添加。</div>`;
-    box.innerHTML=html;return;
-  }
-  const items=[];
-  if(tv)items.push({name:'电视',cd:tv.cooldown||0,min:tvMin});
-  if(ipad)items.push({name:'iPad',cd:ipad.cooldown||0,min:ipadMin});
-  let worstMin=0,unbounded=false,parts=[];
-  items.forEach(it=>{
-    if(it.cd>0){worstMin+=it.min;parts.push(it.name+'×1 ('+it.min+'分钟/次)');}
-    else{unbounded=true;parts.push(it.name+'不限次');}
+  if(!tv&&!ipad){box.innerHTML=`<span class="calc-tag">未设电视/iPad 奖励</span>`;return;}
+  let worstMin=0,unbounded=false;
+  [{cd:tv?tv.cooldown||0:0,min:tvMin},{cd:ipad?ipad.cooldown||0:0,min:ipadMin}].forEach(it=>{
+    if(it.cd>0)worstMin+=it.min; else unbounded=true;
   });
-  const comboTxt=parts.join(' + ');
-  html+=`<tr><td class="cl">单日最坏屏幕时间</td><td class="cv">${unbounded?'<span style="color:#B4233A;">不限（无冷却）</span>':worstMin+' 分钟'}</td></tr>`;
-  if(cap<=0){
-    html+=`<tr><td class="cl">每日观看上限（红线）</td><td class="cv">未设置（0=不限制）</td></tr>`;
-    html+=`</tbody></table><div class="tag-hint">未设置每日观看上限（当前为 0 = 不限制）。设一个上限后，这里会对比红线，它也会作为观看类奖励的硬上限。</div>`;
-    box.innerHTML=html;return;
-  }
-  html+=`<tr><td class="cl">每日观看上限（红线）</td><td class="cv">${cap} 分钟</td></tr>`;
-  if(unbounded){
-    html+=`<tr><td class="cl">结论</td><td class="cv" style="color:#B4233A;line-height:1.5;"><b>⚠️ 无冷却！</b>${comboTxt}，孩子可无限兑换屏幕，必须给该奖励设冷却天数。</td></tr>`;
-  }else if(worstMin>cap){
-    html+=`<tr><td class="cl">结论</td><td class="cv" style="color:#B4233A;line-height:1.5;"><b>⚠️ 超标！</b>单日最坏 ${worstMin} 分钟，超过红线 ${cap} 分钟。<br>压峰值：① 缩短每次时长 ② 只留一个屏幕奖励 ③ 合并电视/iPad 为共享每日1次。</td></tr>`;
-  }else{
-    html+=`<tr><td class="cl">结论</td><td class="cv" style="color:#0C7A6B;line-height:1.5;"><b>✅ 合理。</b>在 ${cap} 分钟红线内，安全边际 ${cap-worstMin} 分钟。</td></tr>`;
-  }
-  html+=`</tbody></table>`;
-  box.innerHTML=html;
+  let verdict;
+  if(unbounded) verdict=`<span class="calc-tag bad">⚠️ 无冷却·可无限看</span>`;
+  else if(cap>0&&worstMin>cap) verdict=`<span class="calc-tag bad">⚠️ 屏幕${worstMin}分>上限${cap}分</span>`;
+  else if(cap>0) verdict=`<span class="calc-tag ok">✅ 屏幕${worstMin}/${cap}分</span>`;
+  else verdict=`<span class="calc-tag">屏幕最坏${worstMin}分</span>`;
+  box.innerHTML=`<span class="calc-tag">日赚🪙${daily}</span>${verdict}`;
 }
 function attachCalc(){
   ['calcRate','calcCap'].forEach(id=>{
@@ -1643,6 +1633,141 @@ function attachCalc(){
     });
   });
 }
+
+/* ---------- 账号云同步（GitHub/Railway 方式，推荐·跨设备） ---------- */
+function escapeHtml(s){return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+const CloudAcct={
+  TK:"kp_cloud_token", AC:"kp_cloud_account", NK:"kp_cloud_nick",
+  get token(){return localStorage.getItem(this.TK);},
+  set token(t){t?localStorage.setItem(this.TK,t):localStorage.removeItem(this.TK);},
+  get account(){return localStorage.getItem(this.AC);},
+  set account(a){a?localStorage.setItem(this.AC,a):localStorage.removeItem(this.AC);},
+  get nickname(){return localStorage.getItem(this.NK);},
+  set nickname(n){n?localStorage.setItem(this.NK,n):localStorage.removeItem(this.NK);},
+  get connected(){return !!this.token;},
+  async request(p,opts={}){
+    const headers={"Content-Type":"application/json"};
+    if(this.token)headers["Authorization"]="Bearer "+this.token;
+    const r=await fetch(p,{...opts,headers,body:opts.body?JSON.stringify(opts.body):undefined});
+    let j=null;try{j=await r.json();}catch(e){}
+    if(!r.ok)throw (j&&j.error)||("HTTP "+r.status);
+    return j;
+  },
+  register(a,pw,nk){return this.request("/api/register",{method:"POST",body:{account:a,password:pw,nickname:nk}});},
+  login(a,pw){return this.request("/api/login",{method:"POST",body:{account:a,password:pw}});},
+  getProfile(){return this.request("/api/profile");},
+  syncProfile(state){return this.request("/api/sync",{method:"POST",body:{state}});},
+  exportData(){return this.request("/api/export");},
+  importData(state){return this.request("/api/import",{method:"POST",body:{state}});},
+  updateNick(nk){return this.request("/api/me",{method:"PUT",body:{nickname:nk}});}
+};
+let acctReady=false, acctPushT=null, backendReady=false;
+function scheduleAcctPush(){
+  if(!CloudAcct.connected||!acctReady||!backendReady)return;
+  clearTimeout(acctPushT);
+  acctPushT=setTimeout(()=>acctPush(),600);
+}
+async function acctPush(){
+  if(!CloudAcct.connected)return;
+  try{
+    const j=await CloudAcct.syncProfile(S);
+    acctReady=true;
+    setAcctStatus("已同步 · "+fmtClock(j.updatedAt),"ok");
+  }catch(e){ setAcctStatus("同步失败："+e,"err"); }
+}
+async function acctPull(){
+  if(!CloudAcct.connected)return;
+  try{
+    const j=await CloudAcct.getProfile();
+    if(j.state){Object.assign(S,j.state);save(false);afterChange();updateTmChip();}
+    acctReady=true;
+    setAcctStatus("已同步 · "+fmtClock(j.updatedAt),"ok");
+  }catch(e){ setAcctStatus("拉取失败："+e,"err"); }
+}
+function hasLocalData(){return (S.log&&S.log.length>0)||S.balance!==0||(S.mystery&&S.mystery.coupons&&S.mystery.coupons.length>0);}
+async function acctBind(res){
+  CloudAcct.token=res.token;CloudAcct.account=res.account;CloudAcct.nickname=res.nickname||res.account;
+  let prof=null;try{prof=await CloudAcct.getProfile();}catch(e){}
+  if(prof&&prof.state){
+    if(hasLocalData()){
+      if(confirm("云端已有该账号的数据。\n点「确定」用云端覆盖本机；点「取消」把本机数据上传到云端。")){
+        Object.assign(S,prof.state);save(false);afterChange();updateTmChip();
+      }else{
+        await CloudAcct.syncProfile(S);
+      }
+    }else{
+      Object.assign(S,prof.state);save(false);afterChange();updateTmChip();
+    }
+  }else{
+    await CloudAcct.syncProfile(S);
+  }
+  acctReady=true;renderAcctPanel();setAcctStatus("已登录并同步","ok");
+}
+async function acctDoLogin(){
+  const a=document.getElementById("acctAccount").value.trim();
+  const pw=document.getElementById("acctPw").value;
+  if(!a||!pw){setAcctStatus("账号和密码必填","err");return;}
+  setAcctStatus("登录中…","");
+  try{const res=await CloudAcct.login(a,pw);await acctBind(res);}
+  catch(e){setAcctStatus("登录失败："+e,"err");}
+}
+async function acctDoRegister(){
+  const a=document.getElementById("acctAccount").value.trim();
+  const pw=document.getElementById("acctPw").value;
+  const nk=document.getElementById("acctNk").value.trim();
+  if(!a||!pw){setAcctStatus("账号和密码必填","err");return;}
+  setAcctStatus("注册中…","");
+  try{const res=await CloudAcct.register(a,pw,nk);await acctBind(res);}
+  catch(e){setAcctStatus("注册失败："+e,"err");}
+}
+function setAcctStatus(txt,cls){
+  const el=document.getElementById("acctStatus");if(!el)return;
+  el.textContent=txt;el.className="sync-status"+(cls?" "+cls:"");
+}
+function renderAcctPanel(){
+  const el=document.getElementById("acctPanel");if(!el)return;
+  if(CloudAcct.connected){
+    el.innerHTML=
+      '<div class="tag-hint" style="margin:0 0 10px;">已登录：<b>'+escapeHtml(CloudAcct.nickname||CloudAcct.account)+'</b>（'+escapeHtml(CloudAcct.account)+'）。任意设备登录同一账号，数据自动同步。</div>'+
+      '<div class="row2">'+
+        '<button class="btn" style="flex:1" id="acctUpload">⬆️ 上传本机</button>'+
+        '<button class="btn ghost" style="flex:1" id="acctDownload">⬇️ 下载云端</button>'+
+      '</div>'+
+      '<button class="btn ghost" style="width:100%;margin-top:10px;color:var(--rose);border-color:#FBD5DC;" id="acctLogout">退出账号</button>'+
+      '<div class="sync-status" id="acctStatus"></div>';
+    el.querySelector("#acctUpload").onclick=()=>acctPush();
+    el.querySelector("#acctDownload").onclick=()=>acctPull();
+    el.querySelector("#acctLogout").onclick=()=>{CloudAcct.token=null;CloudAcct.account=null;CloudAcct.nickname=null;acctReady=false;setAcctStatus("","");renderAcctPanel();};
+  }else{
+    el.innerHTML=
+      '<div class="tag-hint" style="margin:0 0 10px;">注册一个账号，手机/平板/电脑登录同一个账号即可共享积分与记录。数据存于云端，重装微信也不丢。</div>'+
+      '<div class="field" style="margin:0 0 10px;"><input id="acctAccount" placeholder="账号（字母/数字）"></div>'+
+      '<div class="field" style="margin:0 0 10px;"><input id="acctPw" type="password" placeholder="密码"></div>'+
+      '<div class="field" style="margin:0 0 10px;"><input id="acctNk" placeholder="昵称（可选）"></div>'+
+      '<div class="row2">'+
+        '<button class="btn" style="flex:1" id="acctLogin">登录</button>'+
+        '<button class="btn ghost" style="flex:1" id="acctReg">注册</button>'+
+      '</div>'+
+      '<div class="sync-status" id="acctStatus"></div>';
+    el.querySelector("#acctLogin").onclick=acctDoLogin;
+    el.querySelector("#acctReg").onclick=acctDoRegister;
+  }
+}
+async function detectBackend(){
+  try{const r=await fetch("/api/health",{cache:"no-store"});backendReady=r.ok;}catch(e){backendReady=false;}
+  const ac=document.getElementById("acctCard"),sc=document.getElementById("syncCard");
+  if(backendReady){
+    if(ac)ac.style.display="block";
+    if(sc)sc.style.display="none";
+    if(CloudAcct.connected){renderAcctPanel();acctPull();}
+  }else{
+    if(ac)ac.style.display="none";
+    if(sc)sc.style.display="block";
+  }
+}
+document.addEventListener("visibilitychange",()=>{
+  if(document.visibilityState==="visible"&&backendReady&&CloudAcct.connected)acctPull();
+});
 
 /* ---------- 云同步（家庭同步码） ---------- */
 const API=location.origin;
@@ -1742,6 +1867,8 @@ function init(){
   }
   // 云同步：先拉取云端（不提前推送，避免覆盖），再启动定时拉取
   if(S.sync&&S.sync.enabled)syncInit();
+  // 账号云同步（GitHub/Railway 方式）：探测后端并拉取
+  detectBackend();
 }
 attachCalc();
 init();

@@ -2,14 +2,12 @@
   "name": "kids-points-bank",
   "version": "1.0.0",
   "private": true,
-  "description": "小孩子积分兑换系统 - 云同步版（支持 Neon Postgres / 本地文件双模式）",
+  "description": "小小积分银行 - 儿童积分奖励系统（账号云同步·GitHub 部署版）",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "engines": {
     "node": ">=18"
-  },
-  "dependencies": {
-    "pg": "^8.11.3"
   }
 }
